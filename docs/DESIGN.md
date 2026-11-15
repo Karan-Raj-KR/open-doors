@@ -24,3 +24,9 @@ Applied the user-supplied design-studio package: refactoring-ui, craftwork, Emil
 ## Assets
 
 Photographs downloaded from Unsplash and self-hosted under public/images. Fonts downloaded from Google Fonts and self-hosted under public/fonts. Icons from lucide-react (ISC license). See ASSETS.md for image source links.
+
+## Reference video rebuild
+
+The supplied 43-second Pallet Ross reference was examined through extracted full-size frames. The landing page now follows its composition sequence: centered sans-serif headline and overlapping card fan, sticky scroll-driven card stack, large photographic showcase, descending diagonal cards, split mission statement, image tiles framing a community headline, and a lime closing panel. The cards use original event photography and Open Doors event copy. Event discovery and access filters follow the introduction. Reduced motion uses a static stack.
+
+Implementation: `src/components/ReferenceLanding.jsx` and `src/reference.css`. Browser preview access was declined in this session, so this revision has a successful production build but has not received rendered visual verification.

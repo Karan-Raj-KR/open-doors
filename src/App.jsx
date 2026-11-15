@@ -1,3 +1,6 @@
+import ReferenceLanding, {
+  ReferenceCommunity,
+} from "./components/ReferenceLanding.jsx";
 import { useState, useEffect, useRef, useMemo } from "react";
 import {
   DoorOpen,
@@ -237,77 +240,11 @@ export default function App() {
       )}
       <main>
         {tab === "explore" && (
-          <section className="hero">
-            <div className="hero-copy">
-              <div className="local-label">
-                <MapPin size={14} /> BENGALURU / FIND YOUR PEOPLE
-              </div>
-              <h1>
-                Your city,
-                <br />
-                <span>your kind of day.</span>
-              </h1>
-              <p>
-                Little moments make a life. Find the gatherings, places and
-                people that feel like you.
-              </p>
-              <a className="primary hero-cta" href="#events">
-                Find your next good day <ArrowRight size={17} />
-              </a>
-              <div className="hero-footnote">
-                <span className="tiny-doors">
-                  <DoorOpen size={17} />
-                </span>{" "}
-                Thoughtfully found. Happily remembered.
-              </div>
-            </div>
-            <div className="hero-visual">
-              <img
-                className="hero-photo"
-                src="/images/garden.jpg"
-                alt="A sunlit park path beneath a canopy of trees"
-                width="800"
-                height="700"
-                fetchPriority="high"
-              />
-              <div className="photo-shade" />
-              <div className="hero-photo-title">
-                <span>
-                  Make room
-                  <br />
-                  for lovely things.
-                </span>
-                <span className="photo-star" aria-hidden="true">
-                  ✳
-                </span>
-              </div>
-              {featured && (
-                <button
-                  className="featured-ticket"
-                  onClick={() => setSelected(featured._id)}
-                >
-                  <span className="ticket-icon">
-                    <Leaf size={23} />
-                  </span>
-                  <span>
-                    <small>A LITTLE SOMETHING TO LOOK FORWARD TO</small>
-                    <strong>{featured.title}</strong>
-                    <span>
-                      {date(featured.date, {
-                        weekday: "short",
-                        day: "numeric",
-                        month: "short",
-                      })}{" "}
-                      <span className="ticket-dot" /> {featured.area}
-                    </span>
-                  </span>
-                  <span className="ticket-arrow">
-                    <ArrowUpRight size={22} />
-                  </span>
-                </button>
-              )}
-            </div>
-          </section>
+          <ReferenceLanding
+            events={events}
+            onSelect={setSelected}
+            onProfile={() => setModal({ type: "profile" })}
+          />
         )}
         <section className="access-bar" aria-label="Your access preferences">
           <div className="access-intro">
@@ -533,24 +470,15 @@ export default function App() {
             </span>
           </div>
         </section>
-        <section className="manifesto">
-          <div className="manifesto-symbol">
-            <DoorOpen size={64} strokeWidth={1} />
-          </div>
-          <div>
-            <h2>Belonging shouldn’t be a guessing game.</h2>
-            <p>
-              Know about the entrance, the noise, the seats and the journey
-              before you say yes. Because the best plans make room for you.
-            </p>
-          </div>
-          <button
-            className="outline"
-            onClick={() => setModal({ type: "about" })}
-          >
-            Why open doors <ArrowUpRight size={17} />
-          </button>
-        </section>
+        <ReferenceCommunity
+          onProfile={() => setModal({ type: "profile" })}
+          onExplore={() => {
+            changeTab("explore");
+            document
+              .getElementById("events")
+              ?.scrollIntoView({ behavior: "smooth" });
+          }}
+        />
       </main>
       <footer>
         <a className="brand" href="/">
