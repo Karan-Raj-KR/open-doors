@@ -14,7 +14,13 @@ import { categoryIcons, date, time, api } from "../lib.js";
 import Icon from "./Icon.jsx";
 import Modal from "./Modal.jsx";
 
-export default function Organiser({ events, onClose, onChange, notify }) {
+export default function Organiser({
+  preview,
+  events,
+  onClose,
+  onChange,
+  notify,
+}) {
   const [screen, setScreen] = useState("list"),
     [editing, setEditing] = useState(null),
     [busy, setBusy] = useState(false),
@@ -56,8 +62,9 @@ export default function Organiser({ events, onClose, onChange, notify }) {
                 : "A better welcome starts here."}
             </h2>
             <p>
-              Your own demo workspace. Changes persist for your session and
-              never affect another visitor.
+              {preview
+                ? "Read-only preview. Explore the tools; publishing will be enabled when the database is connected."
+                : "Your own demo workspace. Changes persist for your session and never affect another visitor."}
             </p>
           </div>
           {screen === "list" && (
@@ -179,7 +186,7 @@ export default function Organiser({ events, onClose, onChange, notify }) {
                 {error}
               </p>
             )}
-            <button className="primary" disabled={busy}>
+            <button className="primary" disabled={busy || preview}>
               {busy ? "Publishing…" : "Publish update"}
               <ArrowUpRight size={16} />
             </button>
@@ -449,7 +456,7 @@ export default function Organiser({ events, onClose, onChange, notify }) {
                 {error}
               </p>
             )}
-            <button className="primary" disabled={busy}>
+            <button className="primary" disabled={busy || preview}>
               {busy
                 ? "Saving details…"
                 : editing

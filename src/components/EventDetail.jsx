@@ -23,6 +23,7 @@ import Modal from "./Modal.jsx";
 import VenueGuide from "./VenueGuide.jsx";
 
 export default function EventDetail({
+  preview,
   event: e,
   needs,
   saved,
@@ -207,14 +208,16 @@ export default function EventDetail({
             )}
             <button
               className="primary full"
-              disabled={!booking && e.booked >= e.capacity}
+              disabled={preview || (!booking && e.booked >= e.capacity)}
               onClick={booking ? () => downloadCalendar(e, booking) : onBook}
             >
-              {booking
-                ? "Add to calendar"
-                : e.booked >= e.capacity
-                  ? "All places reserved"
-                  : "Save me a place"}
+              {preview
+                ? "Reservations coming soon"
+                : booking
+                  ? "Add to calendar"
+                  : e.booked >= e.capacity
+                    ? "All places reserved"
+                    : "Save me a place"}
               {booking ? <Download size={16} /> : <ArrowRight size={16} />}
             </button>
             <button

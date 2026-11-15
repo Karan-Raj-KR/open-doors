@@ -175,3 +175,20 @@ test("organisers can create and edit events with nullable access information", a
     .expect(400);
   await b.put(`/api/events/${id}`).send(payload).expect(404);
 });
+
+test("unconfigured deployments expose an explicit read-only preview and reject writes", async () => {
+  const uri = process.env.MONGODB_URI;
+  delete process.env.MONGODB_URI;
+  try {
+    const preview = await request(app).get("/api/bootstrap").expect(200);
+    assert.equal(preview.body.preview, true);
+    assert.equal(preview.body.events.length, 6);
+    assert.equal(preview.body.events[0].booked, 0);
+    await request(app)
+      .put("/api/profile")
+      .send({ needs: [], saved: [] })
+      .expect(503);
+  } finally {
+    process.env.MONGODB_URI = uri;
+  }
+});

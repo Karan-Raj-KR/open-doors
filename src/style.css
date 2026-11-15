@@ -3385,3 +3385,45 @@ footer .text-button {
     color: var(--accent);
   }
 }
+.preview-banner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: var(--sage);
+  color: #4d5c3f;
+  padding: 12px 24px;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.preview-banner svg {
+  margin-top: 2px;
+  align-self: flex-start;
+}
+.preview-banner strong {
+  font-weight: 700;
+}
+.preview-banner + main .hero {
+  padding-top: 40px;
+}
+@media (max-width: 760px) {
+  .preview-banner {
+    font-size: 10px;
+    padding: 16px 24px;
+    margin-top: 44px;
+  }
+  .preview-banner + main .hero {
+    padding-top: 36px;
+  }
+  .preview-banner + main .access-bar {
+    margin-top: 24px;
+  }
+  .preview-banner + main .hero + .access-bar {
+    margin-top: 0;
+  }
+  .booking-box > .primary {
+    white-space: normal;
+  }
+}

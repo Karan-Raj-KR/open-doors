@@ -3,7 +3,7 @@ import express from "express";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
-import { randomBytes, randomUUID } from "node:crypto";
+import { randomBytes, randomUUID, createHash } from "node:crypto";
 import { rateLimit } from "express-rate-limit";
 import mongoose from "mongoose";
 import { Event, Booking, Profile, connectDB } from "./models.js";
@@ -44,8 +44,32 @@ app.get("/api/health", async (req, res) => {
       .json({ status: "unavailable", message: "MongoDB is not connected." });
   }
 });
+// A clearly labelled, read-only design preview is available before Atlas is configured.
+// Once MONGODB_URI is set, every request uses the real MongoDB workflow below.
+app.get("/api/bootstrap", (req, res, next) => {
+  if (process.env.MONGODB_URI) return next();
+  return res.json({
+    preview: true,
+    demo: true,
+    profile: { needs: [], saved: [] },
+    bookings: [],
+    accessOptions,
+    events: seedEvents().map((event) => ({
+      ...event,
+      _id: createHash("sha256").update(event.slug).digest("hex").slice(0, 24),
+      booked: 0,
+    })),
+  });
+});
 app.use("/api", async (req, res, next) => {
   try {
+    if (!process.env.MONGODB_URI)
+      return res
+        .status(503)
+        .json({
+          message:
+            "The database is not connected yet. This preview is read-only.",
+        });
     if (!secret || secret.length < 32)
       return res.status(503).json({
         message:

@@ -91,7 +91,7 @@ export default function App() {
     );
   }, [needs, q, category, tab, view, onlyMatches, selected]);
   useEffect(() => {
-    if (!profileDirty || !data) return;
+    if (!profileDirty || !data || data.preview) return;
     const revision = profileRevision.current;
     const t = setTimeout(
       () =>
@@ -225,6 +225,16 @@ export default function App() {
           </button>
         </div>
       </header>
+      {data?.preview && (
+        <div className="preview-banner" role="status">
+          <Info size={16} />
+          <span>
+            <strong>Design preview.</strong> Explore events, filters and
+            comparisons. Reservations and organiser changes will be enabled when
+            the database is connected.
+          </span>
+        </div>
+      )}
       <main>
         {tab === "explore" && (
           <section className="hero">
@@ -660,6 +670,7 @@ export default function App() {
       )}
       {event && !modal && (
         <EventDetail
+          preview={data?.preview}
           event={event}
           needs={needs}
           saved={saved.includes(event._id)}
@@ -778,6 +789,7 @@ export default function App() {
       )}
       {modal?.type === "organiser" && (
         <Organiser
+          preview={data?.preview}
           events={events}
           onClose={() => setModal(null)}
           onChange={mutateEvent}

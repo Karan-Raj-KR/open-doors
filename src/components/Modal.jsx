@@ -20,6 +20,7 @@ export default function Modal({ children, title, onClose, wide = false }) {
   return (
     <dialog
       ref={ref}
+      aria-label={title}
       className={`modal ${wide ? "wide" : ""}`}
       onClick={(e) => {
         if (e.target === ref.current) onClose();
