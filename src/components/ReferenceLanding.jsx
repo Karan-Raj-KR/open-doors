@@ -1,7 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  Pause,
+  Play,
   Accessibility,
   VolumeX,
   Armchair,
@@ -37,6 +41,9 @@ function Poster({ item, index, onClick }) {
 }
 export default function ReferenceLanding({ events, onSelect, onProfile }) {
   const stage = useRef(null);
+  const [slide, setSlide] = useState(0);
+  const [missionTab, setMissionTab] = useState("events");
+  const slideEvent = events.find((event) => event.image === covers[slide][0]);
   useEffect(() => {
     let frame;
     const el = stage.current;
@@ -87,19 +94,35 @@ export default function ReferenceLanding({ events, onSelect, onProfile }) {
           Good people. Shared moments.
           <br />A city with room for you.
         </p>
-        <a href="#events" className="reference-link">
-          Explore your city <ArrowDown size={15} />
-        </a>
+        <div className="hero-actions">
+          <a href="#events" className="primary">
+            Explore events <ArrowUpRight size={14} />
+          </a>
+          <button className="reference-link" onClick={onProfile}>
+            Find your fit <ArrowDown size={14} />
+          </button>
+        </div>
       </section>
       <section className="stack-journey" ref={stage}>
         <div className="journey-sticky">
           <div className="journey-heading">
             <span>COMMUNITY, WITHOUT THE GUESSWORK</span>
             <h2>
-              Discover, connect
+              Discover,
               <br />
-              <em>& feel at home.</em>
+              <em>connect,</em>
+              <br />& feel at home.
             </h2>
+            <p className="intro-description">
+              A gathering for every pace.
+              <br />
+              Find something you love, with the
+              <br />
+              access information you need.
+            </p>
+            <a className="primary" href="#events">
+              Find your people <ArrowUpRight size={14} />
+            </a>
           </div>
           <div className="journey-stack">
             {covers.map((item, i) => (
@@ -133,46 +156,76 @@ export default function ReferenceLanding({ events, onSelect, onProfile }) {
             Go on your terms.
           </p>
         </div>
-        <button className="showcase-image" onClick={() => explore(0)}>
+        <div
+          className="showcase-image"
+          style={{ "--showcase-color": covers[slide][2] }}
+        >
           <img
-            src="/images/hero.jpg"
-            alt="Friends enjoying a day outdoors together"
+            key={slide}
+            src={"/images/" + covers[slide][0] + ".jpg"}
+            alt={slideEvent?.title || "Illustrative community event"}
           />
-          <span className="showcase-word">
-            COME AS
-            <br />
-            YOU ARE.
+          <span className="showcase-small-label">
+            {slideEvent?.title || "Find your next gathering"}
           </span>
-          <span className="showcase-action">
-            Find your next gathering <ArrowUpRight size={22} />
-          </span>
-        </button>
+          <button className="showcase-open" onClick={() => explore(slide)}>
+            Explore event <ArrowUpRight size={14} />
+          </button>
+          <div
+            className="showcase-pagination"
+            aria-label="Featured event carousel"
+          >
+            <button
+              onClick={() => setSlide((v) => (v + 5) % 6)}
+              aria-label="Previous featured event"
+            >
+              <ArrowLeft size={18} />
+            </button>
+            <span aria-live="polite">{slide + 1} / 6</span>
+            <button
+              onClick={() => setSlide((v) => (v + 1) % 6)}
+              aria-label="Next featured event"
+            >
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
       </section>
       <section className="diagonal-section">
-        <div className="diagonal-copy">
-          <span>A DIFFERENT KIND OF INVITATION</span>
+        <div className="connecting-statement">
           <h2>
-            Every good day
+            Whether you come for a new skill
             <br />
-            has a story.
+            or a little good company,
+            <br />
+            <span>there is room for you.</span>
           </h2>
-          <p>
-            From clay-covered hands to an unhurried walk. Make space for
-            something that makes you feel more like you.
-          </p>
-          <button onClick={onProfile}>
-            Make it your kind of day <ArrowUpRight size={17} />
-          </button>
         </div>
         <div className="diagonal-cards">
-          {covers.slice(0, 5).map((item, i) => (
+          {covers.map((item, i) => (
             <Poster
               key={item[0]}
               item={item}
-              index={i}
+              index={i + 1}
               onClick={() => explore(i)}
             />
           ))}
+          <div className="diagonal-info">
+            <DoorOpen size={24} />
+            <h3>
+              Where people
+              <br />
+              meet possibility.
+            </h3>
+            <span>OPEN DOORS</span>
+            <p>
+              A little more information.
+              <br />A lot less wondering.
+            </p>
+            <button onClick={onProfile}>
+              Your access profile <ArrowUpRight size={15} />
+            </button>
+          </div>
         </div>
       </section>
       <section className="access-statement">
@@ -195,14 +248,79 @@ export default function ReferenceLanding({ events, onSelect, onProfile }) {
             <TramFront />
           </div>
         </div>
+        <div className="mission-folder">
+          <div
+            className="folder-tabs"
+            role="group"
+            aria-label="Explore community information"
+          >
+            <button
+              aria-pressed={missionTab === "events"}
+              onClick={() => setMissionTab("events")}
+            >
+              Community events <span>↗</span>
+            </button>
+            <button
+              aria-pressed={missionTab === "access"}
+              onClick={() => setMissionTab("access")}
+            >
+              Your access needs <span>↗</span>
+            </button>
+          </div>
+          {missionTab === "events" ? (
+            <div className="mission-grid">
+              {covers.map((item, i) => (
+                <button
+                  key={item[0]}
+                  onClick={() => explore(i)}
+                  aria-label={"Explore " + item[0] + " event"}
+                >
+                  <img src={"/images/" + item[0] + ".jpg"} alt="" />
+                  <span>
+                    {events.find((e) => e.image === item[0])?.title || item[0]}
+                  </span>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="mission-needs">
+              {[
+                [Accessibility, "Step-free routes"],
+                [VolumeX, "Lower noise"],
+                [Armchair, "Room to sit"],
+                [TramFront, "An easier journey"],
+              ].map(([I, label]) => (
+                <button key={label} onClick={onProfile}>
+                  <I size={25} />
+                  {label}
+                  <ArrowUpRight size={16} />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </section>
     </>
   );
 }
 export function ReferenceCommunity({ onProfile, onExplore }) {
+  const [paused, setPaused] = useState(false);
   return (
     <>
-      <section className="reference-community">
+      <section
+        className={"reference-community " + (paused ? "motion-paused" : "")}
+      >
+        <button
+          className="pause-tiles"
+          aria-label={
+            paused
+              ? "Play community image motion"
+              : "Pause community image motion"
+          }
+          onClick={() => setPaused((v) => !v)}
+        >
+          {paused ? <Play size={14} /> : <Pause size={14} />}
+        </button>
         <div className="community-tiles top">
           {[...covers, ...covers].map((item, i) => (
             <img
@@ -242,6 +360,12 @@ export function ReferenceCommunity({ onProfile, onExplore }) {
           ))}
         </div>
       </section>
+    </>
+  );
+}
+export function ReferenceClosing({ onProfile, onOrganiser }) {
+  return (
+    <>
       <section className="lime-invitation">
         <div className="lime-line">
           Inspired by people. <span>Made for belonging.</span>
@@ -262,6 +386,44 @@ export function ReferenceCommunity({ onProfile, onExplore }) {
           <TramFront />
           <DoorOpen />
         </div>
+      </section>
+      <section className="paired-invitations">
+        <article className="attendee-invite">
+          <img src="/images/hero.jpg" alt="Friends enjoying time outdoors" />
+          <div>
+            <DoorOpen size={26} />
+            <h2>
+              Find a place.
+              <br />
+              Feel at home.
+            </h2>
+            <p>
+              Choose the access details that matter to you. Discover a day that
+              fits.
+            </p>
+            <button onClick={onProfile}>
+              Find your fit <ArrowUpRight size={15} />
+            </button>
+          </div>
+        </article>
+        <article className="organiser-invite">
+          <img src="/images/pottery.jpg" alt="Hands shaping a clay pot" />
+          <div>
+            <DoorOpen size={26} />
+            <h2>
+              Open a door.
+              <br />
+              Bring people together.
+            </h2>
+            <p>
+              Share your gathering, the practical details, and a welcome that
+              makes room.
+            </p>
+            <button onClick={onOrganiser}>
+              For organisers <ArrowUpRight size={15} />
+            </button>
+          </div>
+        </article>
       </section>
     </>
   );

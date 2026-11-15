@@ -128,6 +128,10 @@ Capacity is acquired with an atomic conditional increment. Duplicate booking fai
 
 See [deployment instructions](docs/DEPLOYMENT.md). Never commit `.env`, database passwords or deployment tokens. Production requires `MONGODB_URI` and a strong `SESSION_SECRET`.
 
+## Video reference analysis
+
+The installed [video-to-ui skill](https://github.com/mmohajer9/video-to-ui) was applied to the supplied recording: 43 frames, five independent batch reports, and 14 representative frames. See [the frame-cited analysis and implementation record](docs/video-to-ui/design-analysis.md).
+
 ## Design & credits
 
 Built using the supplied **design-studio** package: Refactoring UI, Craftwork, Emil design engineering and Web Interface Guidelines. See [design notes](docs/DESIGN.md) and [asset sources](docs/ASSETS.md). All photos and fonts are self-hosted. No AI service, paid API or email provider is required at runtime.

@@ -746,3 +746,575 @@ footer .brand {
     transition: none;
   }
 }
+/* video-to-ui measured corrections. Frame citations: docs/video-to-ui/design-analysis.md. */
+:root {
+  --reference-mint: #8bcbbe;
+  --reference-red: #9d2c31;
+  --reference-lime: #e9ff5d;
+  --reference-orange: #f76b43;
+}
+.brand > svg {
+  color: var(--reference-mint);
+}
+.card-fan {
+  width: min(950px, 74vw);
+  height: 290px;
+  margin-top: 38px;
+  margin-bottom: 5px;
+  flex-shrink: 0;
+}
+.card-fan .art-poster {
+  width: 23%;
+  height: 245px;
+  left: calc(4% + var(--i) * 12%);
+  top: calc(25px + var(--i) * 2px);
+  transform: rotate(calc(-12deg + var(--i) * 4deg)) rotateY(-8deg);
+  animation: fan-arrive 0.9s var(--ease) both;
+  animation-delay: calc(var(--i) * 65ms);
+}
+@keyframes fan-arrive {
+  from {
+    opacity: 0;
+    transform: translateX(calc((2.5 - var(--i)) * 65px)) translateY(35px)
+      rotate(0deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(calc(-12deg + var(--i) * 4deg)) rotateY(-8deg);
+  }
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  margin-top: 18px;
+}
+.hero-actions > .primary {
+  font-size: 11px;
+  min-height: 40px;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+.hero-actions > .reference-link {
+  border: 0;
+  margin: 0;
+}
+.journey-heading em {
+  color: var(--reference-red);
+}
+.journey-heading .intro-description {
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 24px 0;
+  color: #747874;
+}
+.journey-heading > .primary {
+  font-size: 11px;
+  min-height: 40px;
+  margin-top: 10px;
+}
+.showcase-image {
+  background: var(--showcase-color, var(--reference-orange));
+}
+.showcase-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  mix-blend-mode: normal;
+}
+.showcase-image:after {
+  content: "";
+  position: absolute;
+  inset: 65% 0 0;
+  background: linear-gradient(transparent, #0007);
+  pointer-events: none;
+}
+.showcase-small-label {
+  position: absolute;
+  left: 32px;
+  bottom: 85px;
+  z-index: 1;
+  color: white;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+.showcase-open {
+  position: absolute;
+  left: 32px;
+  bottom: 30px;
+  background: white;
+  color: #171a18;
+  z-index: 2;
+  border-radius: 30px;
+  padding: 10px 17px;
+  font-size: 11px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.showcase-pagination {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 2;
+  color: white;
+  font-size: 10px;
+}
+.showcase-pagination > button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: white;
+  color: #171a18;
+  display: grid;
+  place-items: center;
+}
+.diagonal-section {
+  min-height: 1050px;
+  padding: 30px 0;
+}
+.connecting-statement {
+  text-align: center;
+  padding: 0 7% 70px;
+}
+.connecting-statement h2 {
+  font-size: clamp(34px, 3.7vw, 55px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -2px;
+}
+.connecting-statement h2 span {
+  color: var(--reference-mint);
+}
+.diagonal-cards {
+  left: 4%;
+  top: 280px;
+  right: 0;
+  height: 750px;
+}
+.diagonal-cards .art-poster {
+  width: 17%;
+  height: 285px;
+  left: calc((var(--i) - 1) * 14.1%);
+  top: calc((var(--i) - 1) * 80px);
+  transform: none;
+}
+.diagonal-cards .art-poster:nth-child(n + 2) {
+  left: calc(var(--i) * 14.1%);
+  top: calc(var(--i) * 80px);
+}
+.diagonal-cards .art-poster:nth-child(even) {
+  transform: none;
+}
+.diagonal-info {
+  position: absolute;
+  left: 14.1%;
+  top: 80px;
+  width: 17%;
+  height: 285px;
+  background: white;
+  border-radius: 16px;
+  padding: 25px 20px;
+  box-shadow: 0 5px 20px #171a1805;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 3;
+}
+.diagonal-info > svg {
+  position: absolute;
+  right: 18px;
+  top: 20px;
+}
+.diagonal-info h3 {
+  font-size: 19px;
+  line-height: 1.1;
+  letter-spacing: -0.7px;
+  margin: 22px 0 10px;
+}
+.diagonal-info > span {
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: #888;
+}
+.diagonal-info p {
+  font-size: 10px;
+  line-height: 1.6;
+  margin-top: auto;
+}
+.diagonal-info button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  padding: 9px 0;
+}
+.access-statement {
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 28px 70px;
+  align-items: start;
+}
+.access-statement > h2 {
+  grid-column: 1;
+  grid-row: 1;
+}
+.access-statement > div:not(.mission-folder) {
+  grid-column: 1;
+  grid-row: 2;
+}
+.mission-folder {
+  grid-column: 2;
+  grid-row: 1/3;
+  min-height: 400px;
+}
+.folder-tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 12px;
+}
+.folder-tabs button {
+  height: 45px;
+  border-radius: 14px 24px 0 0;
+  background: #eceeec;
+  color: #333;
+  width: 78%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 12px;
+}
+.folder-tabs button + button {
+  margin-top: -6px;
+  margin-left: 12%;
+  width: 88%;
+}
+.folder-tabs button[aria-pressed="true"] {
+  background: #171a18;
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+.mission-grid {
+  background: #f1f2f0;
+  border-radius: 0 12px 12px 12px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  position: relative;
+  z-index: 3;
+}
+.mission-grid button {
+  position: relative;
+  padding: 0;
+  aspect-ratio: 0.83;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.mission-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mission-grid span {
+  position: absolute;
+  inset: auto 0 0;
+  background: linear-gradient(transparent, #0009);
+  color: white;
+  font-size: 9px;
+  text-align: left;
+  padding: 22px 8px 10px;
+}
+.mission-needs {
+  background: #f1f2f0;
+  padding: 20px;
+  border-radius: 0 12px 12px 12px;
+  display: grid;
+  gap: 10px;
+  min-height: 330px;
+}
+.mission-needs > button {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  background: white;
+  border-radius: 8px;
+  font-size: 12px;
+}
+.mission-needs > button > svg:last-child {
+  margin-left: auto;
+}
+.reference-community {
+  margin-top: 0;
+}
+.community-tiles {
+  width: max-content;
+  right: auto;
+  gap: 35px;
+  animation: tile-drift 50s linear infinite;
+}
+.community-tiles.bottom {
+  animation-direction: reverse;
+}
+.motion-paused .community-tiles {
+  animation-play-state: paused;
+}
+.pause-tiles {
+  position: absolute;
+  right: 5%;
+  top: 135px;
+  z-index: 3;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+}
+@keyframes tile-drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.lime-invitation {
+  background: var(--reference-lime);
+}
+.paired-invitations {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5%;
+  padding: 0 8% 100px;
+}
+.paired-invitations > article {
+  min-height: 530px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #f0f0f0;
+}
+.paired-invitations > article > img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+}
+.paired-invitations .attendee-invite {
+  background: #be0050;
+  color: white;
+}
+.attendee-invite > img {
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+.organiser-invite > img {
+  height: 48% !important;
+  top: 0;
+}
+.paired-invitations article > div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 35px;
+  isolation: isolate;
+}
+.attendee-invite > div:before {
+  content: "";
+  position: absolute;
+  inset: -45px 0 0;
+  background: linear-gradient(transparent, #400520e0);
+  z-index: -1;
+}
+.paired-invitations h2 {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -1.8px;
+  margin: 14px 0;
+}
+.paired-invitations p {
+  font-size: 12px;
+  line-height: 1.7;
+  max-width: 300px;
+}
+.paired-invitations button {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  background: white;
+  color: #171a18;
+  border-radius: 30px;
+  padding: 11px 18px;
+  font-size: 11px;
+  margin-top: 20px;
+}
+.organiser-invite button {
+  background: #171a18;
+  color: white;
+}
+@media (max-width: 1050px) and (min-width: 761px) {
+  .diagonal-info {
+    padding: 18px 14px;
+  }
+  .diagonal-info h3 {
+    font-size: 15px;
+  }
+  .diagonal-cards .art-poster,
+  .diagonal-info {
+    height: 240px;
+  }
+  .diagonal-section {
+    min-height: 950px;
+  }
+  .paired-invitations h2 {
+    font-size: 31px;
+  }
+}
+@media (max-width: 760px) {
+  .card-fan {
+    width: 560px;
+    transform: scale(0.68);
+    height: 270px;
+    margin-top: 8px;
+    margin-bottom: -35px;
+  }
+  .card-fan .art-poster {
+    height: 230px;
+    width: 27%;
+    left: calc(0% + var(--i) * 14%);
+  }
+  .hero-actions {
+    gap: 20px;
+  }
+  .journey-heading .intro-description {
+    font-size: 12px;
+  }
+  .showcase-small-label {
+    font-size: 18px;
+    left: 20px;
+    bottom: 80px;
+  }
+  .showcase-open {
+    left: 20px;
+    bottom: 25px;
+  }
+  .showcase-pagination {
+    right: 18px;
+    bottom: 25px;
+    gap: 8px;
+  }
+  .showcase-pagination > button {
+    width: 32px;
+    height: 32px;
+  }
+  .connecting-statement {
+    padding: 0 24px 50px;
+  }
+  .connecting-statement h2 {
+    font-size: 32px;
+    letter-spacing: -1.3px;
+  }
+  .diagonal-section {
+    min-height: 900px;
+    padding-top: 20px;
+  }
+  .diagonal-cards {
+    top: 245px;
+    left: -40px;
+    width: 1000px;
+    transform: scale(0.58);
+    transform-origin: top left;
+  }
+  .diagonal-cards .art-poster,
+  .diagonal-info {
+    height: 265px;
+  }
+  .diagonal-info {
+    padding: 20px 15px;
+  }
+  .diagonal-info h3 {
+    font-size: 18px;
+  }
+  .access-statement {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 0;
+  }
+  .access-statement > h2,
+  .access-statement > div:not(.mission-folder),
+  .mission-folder {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .mission-folder {
+    margin-top: 20px;
+    min-height: 0;
+  }
+  .mission-grid {
+    gap: 9px;
+    padding: 12px;
+  }
+  .mission-grid span {
+    font-size: 8px;
+  }
+  .reference-community {
+    min-height: 570px;
+  }
+  .community-tiles {
+    gap: 23px;
+    animation-duration: 40s;
+    width: max-content;
+  }
+  .pause-tiles {
+    top: 130px;
+  }
+  .paired-invitations {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 24px 60px;
+  }
+  .paired-invitations > article {
+    min-height: 490px;
+  }
+  .paired-invitations h2 {
+    font-size: 36px;
+  }
+  .paired-invitations article > div {
+    padding: 28px;
+  }
+  .lime-invitation {
+    margin-bottom: 45px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .community-tiles {
+    animation: none;
+  }
+  .card-fan .art-poster {
+    animation: none;
+  }
+  .pause-tiles {
+    display: none;
+  }
+}
+/* Persistent navigation observed throughout frames 001–043. */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 10;
+}
+@media (max-width: 760px) {
+  .site-header nav {
+    background: var(--paper);
+  }
+}

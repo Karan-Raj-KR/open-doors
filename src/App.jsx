@@ -1,5 +1,6 @@
 import ReferenceLanding, {
   ReferenceCommunity,
+  ReferenceClosing,
 } from "./components/ReferenceLanding.jsx";
 import { useState, useEffect, useRef, useMemo } from "react";
 import {
@@ -246,6 +247,16 @@ export default function App() {
             onProfile={() => setModal({ type: "profile" })}
           />
         )}
+        {tab === "explore" && (
+          <ReferenceCommunity
+            onProfile={() => setModal({ type: "profile" })}
+            onExplore={() =>
+              document
+                .getElementById("events")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          />
+        )}
         <section className="access-bar" aria-label="Your access preferences">
           <div className="access-intro">
             <span className="access-symbol">
@@ -470,14 +481,9 @@ export default function App() {
             </span>
           </div>
         </section>
-        <ReferenceCommunity
+        <ReferenceClosing
           onProfile={() => setModal({ type: "profile" })}
-          onExplore={() => {
-            changeTab("explore");
-            document
-              .getElementById("events")
-              ?.scrollIntoView({ behavior: "smooth" });
-          }}
+          onOrganiser={() => setModal({ type: "organiser" })}
         />
       </main>
       <footer>
