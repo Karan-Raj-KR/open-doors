@@ -240,33 +240,32 @@ export default function App() {
           <section className="hero">
             <div className="hero-copy">
               <div className="local-label">
-                <MapPin size={14} /> Bengaluru, made for everyone
+                <MapPin size={14} /> BENGALURU / FIND YOUR PEOPLE
               </div>
               <h1>
-                Good company.
+                Your city,
                 <br />
-                <span>On your terms.</span>
+                <span>your kind of day.</span>
               </h1>
               <p>
-                A pottery class. A park picnic. Your next favourite memory.
-                <br className="desktop" /> Find community events where you can
-                feel at home.
+                Little moments make a life. Find the gatherings, places and
+                people that feel like you.
               </p>
               <a className="primary hero-cta" href="#events">
-                Find your kind of thing <ArrowRight size={17} />
+                Find your next good day <ArrowRight size={17} />
               </a>
               <div className="hero-footnote">
                 <span className="tiny-doors">
                   <DoorOpen size={17} />
                 </span>{" "}
-                A little more information. A lot less wondering.
+                Thoughtfully found. Happily remembered.
               </div>
             </div>
             <div className="hero-visual">
               <img
                 className="hero-photo"
-                src="/images/hero.jpg"
-                alt="Friends sitting shoulder to shoulder outdoors by the waterfront"
+                src="/images/garden.jpg"
+                alt="A sunlit park path beneath a canopy of trees"
                 width="800"
                 height="700"
                 fetchPriority="high"
@@ -274,9 +273,9 @@ export default function App() {
               <div className="photo-shade" />
               <div className="hero-photo-title">
                 <span>
-                  More connection.
+                  Make room
                   <br />
-                  Fewer barriers.
+                  for lovely things.
                 </span>
                 <span className="photo-star" aria-hidden="true">
                   ✳
@@ -291,7 +290,7 @@ export default function App() {
                     <Leaf size={23} />
                   </span>
                   <span>
-                    <small>A little something to look forward to</small>
+                    <small>A LITTLE SOMETHING TO LOOK FORWARD TO</small>
                     <strong>{featured.title}</strong>
                     <span>
                       {date(featured.date, {
