@@ -1,5 +1,9 @@
 # Deploy Open Doors
 
+Production preview: https://open-doors-karan.vercel.app
+
+The Vercel project and sensitive SESSION_SECRET are configured. MongoDB was deferred at the owner’s request. Add MONGODB_URI and redeploy to activate the persistence features. Until then, the site is explicitly read-only.
+
 ## MongoDB Atlas
 
 1. Create a free Atlas cluster for this project.

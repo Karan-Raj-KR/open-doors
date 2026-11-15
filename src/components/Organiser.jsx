@@ -102,7 +102,7 @@ export default function Organiser({
                   </div>
                   <span className="organiser-status">
                     <CheckCircle2 size={14} />
-                    Published
+                    {preview ? "Sample event" : "Published"}
                   </span>
                   <span>
                     {e.booked}/{e.capacity} booked

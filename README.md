@@ -12,7 +12,9 @@ An inclusive community event directory that makes practical access information p
 
 ## Try it
 
-The deployed link will be added after the production database is connected.
+**Live preview: https://open-doors-karan.vercel.app**
+
+MongoDB setup is intentionally deferred. The deployed site currently provides a clearly labelled read-only design preview: browsing, access matching, venue guides and comparisons work. Reservations and organiser writes stay disabled until `MONGODB_URI` is configured. The full persistence workflow has been verified locally with real MongoDB.
 
 No account is required for the demo. Every visitor receives a separate, signed session and a personal MongoDB-backed workspace. You can explore both attendee and organiser tools without affecting another visitor.
 
@@ -44,7 +46,7 @@ All events, prices, schedules and venue access claims are illustrative. There ar
 
 ## Run locally
 
-Requires Node.js 22+ and npm.
+Requires Node.js 22 and npm.
 
 ```sh
 npm ci

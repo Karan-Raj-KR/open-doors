@@ -59,6 +59,21 @@ export default function EventDetail({
           <div
             className="detail-tabs"
             role="tablist"
+            onKeyDown={(event) => {
+              const tabs = ["overview", "access guide", "updates"];
+              const key = event.key;
+              if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(key))
+                return;
+              event.preventDefault();
+              const next =
+                key === "Home"
+                  ? 0
+                  : key === "End"
+                    ? 2
+                    : (tabs.indexOf(tab) + (key === "ArrowRight" ? 1 : 2)) % 3;
+              setTab(tabs[next]);
+              event.currentTarget.querySelectorAll("button")[next].focus();
+            }}
             aria-label="Event details"
           >
             {["overview", "access guide", "updates"].map((t) => (
@@ -66,6 +81,9 @@ export default function EventDetail({
                 key={t}
                 role="tab"
                 aria-selected={tab === t}
+                tabIndex={tab === t ? 0 : -1}
+                aria-controls="event-details-panel"
+                id={`event-tab-${t.replaceAll(" ", "-")}`}
                 className={tab === t ? "active" : ""}
                 onClick={() => setTab(t)}
               >
@@ -75,7 +93,11 @@ export default function EventDetail({
               </button>
             ))}
           </div>
-          <div role="tabpanel">
+          <div
+            role="tabpanel"
+            id="event-details-panel"
+            aria-labelledby={`event-tab-${tab.replaceAll(" ", "-")}`}
+          >
             {tab === "overview" ? (
               <>
                 <h3>A little about the day</h3>
@@ -265,8 +287,10 @@ export default function EventDetail({
             </button>
           </div>
           <p className="detail-honesty">
-            <Info size={14} /> Illustrative event. No payment is collected. Your
-            booking is saved in this demo session only.
+            <Info size={14} />{" "}
+            {preview
+              ? "Design preview. Reservations will be enabled when the database is connected."
+              : "Illustrative event. No payment is collected. Your booking is saved in this demo session only."}
           </p>
         </aside>
       </div>
