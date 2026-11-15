@@ -1,0 +1,38 @@
+{
+  "name": "open-doors-community-event-access",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 0.0.0.0\" \"node --watch server/local.js\"",
+    "build": "vite build",
+    "start": "node server/local.js",
+    "test": "node --test tests/*.test.js",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "cookie-parser": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "express-rate-limit": "latest",
+    "helmet": "latest",
+    "jsonwebtoken": "latest",
+    "lucide-react": "latest",
+    "mongoose": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "vite": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest",
+    "concurrently": "latest",
+    "mongodb-memory-server": "latest",
+    "prettier": "^3.10.1",
+    "supertest": "latest"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
