@@ -4,7 +4,7 @@
 
 An inclusive community event directory that makes practical access information part of the invitation. Built by **Karan Raj K R** for **Semester 3 Backend Development CIA-II**.
 
-![Open Doors desktop interface](docs/screenshots/desktop.jpg)
+The current landing page follows the supplied video reference: a centered headline and card fan, a scroll-driven card stack, photographic showcase, diagonal event posters, community tile rows, and a lime invitation panel. The earlier screenshots in `docs/screenshots` document the previous UI.
 
 **Assigned topic:** Community Event Access
 **Theme:** Inclusive event information
