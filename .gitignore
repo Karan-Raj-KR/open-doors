@@ -10,3 +10,7 @@ playwright-report/
 .DS_Store
 .vercel
 .env*
+.open-motion
+
+# Locally cloned animation authoring tool; only the licensed runtime subset is vendored.
+/open-motion/

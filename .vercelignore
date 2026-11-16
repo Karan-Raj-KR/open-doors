@@ -9,3 +9,4 @@ tests
 test-results
 playwright-report
 .DS_Store
+open-motion

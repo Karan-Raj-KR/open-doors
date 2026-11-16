@@ -1,3 +1,4 @@
+import { MotionText } from "../motion/OpenMotion.jsx";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
@@ -75,11 +76,11 @@ export default function ReferenceLanding({ events, onSelect, onProfile }) {
   return (
     <>
       <section className="reference-hero">
-        <h1>
+        <MotionText as="h1">
           A place to find
           <br />
           your kind of day.
-        </h1>
+        </MotionText>
         <div className="card-fan">
           {covers.map((item, i) => (
             <Poster
@@ -107,12 +108,12 @@ export default function ReferenceLanding({ events, onSelect, onProfile }) {
         <div className="journey-sticky">
           <div className="journey-heading">
             <span>COMMUNITY, WITHOUT THE GUESSWORK</span>
-            <h2>
+            <MotionText>
               Discover,
               <br />
               <em>connect,</em>
               <br />& feel at home.
-            </h2>
+            </MotionText>
             <p className="intro-description">
               A gathering for every pace.
               <br />
@@ -143,11 +144,11 @@ export default function ReferenceLanding({ events, onSelect, onProfile }) {
       </section>
       <section className="orange-showcase">
         <div className="showcase-top">
-          <h2>
+          <MotionText>
             Your gateway
             <br />
             to good company.
-          </h2>
+          </MotionText>
           <p>
             Know the space.
             <br />
@@ -193,13 +194,13 @@ export default function ReferenceLanding({ events, onSelect, onProfile }) {
       </section>
       <section className="diagonal-section">
         <div className="connecting-statement">
-          <h2>
+          <MotionText>
             Whether you come for a new skill
             <br />
             or a little good company,
             <br />
-            <span>there is room for you.</span>
-          </h2>
+            <em className="reference-accent">there is room for you.</em>
+          </MotionText>
         </div>
         <div className="diagonal-cards">
           {covers.map((item, i) => (
@@ -229,10 +230,10 @@ export default function ReferenceLanding({ events, onSelect, onProfile }) {
         </div>
       </section>
       <section className="access-statement">
-        <h2>
+        <MotionText>
           A little clarity.
           <br />A lot more possibility.
-        </h2>
+        </MotionText>
         <div>
           <p>
             The entrance. The sound. The journey there. Choose what matters to
@@ -334,11 +335,11 @@ export function ReferenceCommunity({ onProfile, onExplore }) {
         </div>
         <div className="community-center">
           <DoorOpen size={27} />
-          <h2>
+          <MotionText>
             You will find yourself
             <br />
             among us.
-          </h2>
+          </MotionText>
           <p>
             A shared table. A familiar face. A place to belong.
             <br />
@@ -371,11 +372,11 @@ export function ReferenceClosing({ onProfile, onOrganiser }) {
           Inspired by people. <span>Made for belonging.</span>
         </div>
         <div className="lime-main">
-          <h2>
+          <MotionText>
             Your city.
             <br />
             Wide open.
-          </h2>
+          </MotionText>
           <button onClick={onProfile}>
             Find your fit <ArrowUpRight size={23} />
           </button>
@@ -392,11 +393,11 @@ export function ReferenceClosing({ onProfile, onOrganiser }) {
           <img src="/images/hero.jpg" alt="Friends enjoying time outdoors" />
           <div>
             <DoorOpen size={26} />
-            <h2>
+            <MotionText>
               Find a place.
               <br />
               Feel at home.
-            </h2>
+            </MotionText>
             <p>
               Choose the access details that matter to you. Discover a day that
               fits.
@@ -410,11 +411,11 @@ export function ReferenceClosing({ onProfile, onOrganiser }) {
           <img src="/images/pottery.jpg" alt="Hands shaping a clay pot" />
           <div>
             <DoorOpen size={26} />
-            <h2>
+            <MotionText>
               Open a door.
               <br />
               Bring people together.
-            </h2>
+            </MotionText>
             <p>
               Share your gathering, the practical details, and a welcome that
               makes room.

@@ -888,7 +888,8 @@ footer .brand {
   line-height: 1.18;
   letter-spacing: -2px;
 }
-.connecting-statement h2 span {
+.connecting-statement h2 > .reference-accent {
+  font-style:normal;
   color: var(--reference-mint);
 }
 .diagonal-cards {

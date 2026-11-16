@@ -21,7 +21,8 @@ export default function Modal({ children, title, onClose, wide = false }) {
     <dialog
       ref={ref}
       aria-label={title}
-      className={`modal ${wide ? "wide" : ""}`}
+      data-om-recipe="dialog"
+      className={`modal om-visible ${wide ? "wide" : ""}`}
       onClick={(e) => {
         if (e.target === ref.current) onClose();
       }}
